@@ -75,6 +75,9 @@ AS_IF([test "x$enable_sse2" != "xno"], [
     CFLAGS="-mfpmath=sse -msse2 -DUSE_SSE ${CFLAGS}"
 ])
 
+AC_MSG_NOTICE([disabling GCC linker plugin])
+CFLAGS="-fno-use-linker-plugin ${CFLAGS}"
+
 AC_CHECK_HEADER(cblas.h, [AX_CBLAS])
 
 AC_ARG_ENABLE([data-download],
