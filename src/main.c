@@ -34,7 +34,7 @@ static inline void print_output(char *address, libpostal_normalize_options_t opt
             free(json_string);
         }
         printf("]}\n");
-
+        fflush(stdout);
     }
 
     libpostal_expansion_array_destroy(expansions, num_expansions);

@@ -37,6 +37,7 @@ int main(int argc, char **argv) {
     }
 
     printf("Loading models...\n");
+    fflush(stdout);
 
     if (!libpostal_setup() || !address_parser_module_setup(address_parser_dir)) {
         exit(EXIT_FAILURE);
@@ -48,6 +49,7 @@ int main(int argc, char **argv) {
     printf("Type in any address to parse and print the result.\n\n");
     printf("Special commands:\n");
     printf(".exit to quit the program\n\n");
+    fflush(stdout);
 
     char *language = NULL;
     char *country = NULL;
@@ -56,7 +58,7 @@ int main(int argc, char **argv) {
 
     address_parser_t *parser = get_address_parser();
 
-    while((input = linenoise("> ")) != NULL) {
+    while((input = linenoise("] ")) != NULL) {
 
         if (input[0] != '\0') {
             linenoiseHistoryAdd(input); /* Add to the history. */
@@ -130,6 +132,7 @@ int main(int argc, char **argv) {
                 free(json_string);
             }
             printf("}\n");
+            fflush(stdout);
             printf("\n");
 
             libpostal_address_parser_response_destroy(parsed);
